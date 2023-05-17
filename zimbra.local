@@ -1,26 +1,19 @@
-[zimbra-submission]
+[zimbra-smtp]
 enabled = true
-filter = zimbra-submission
+filter = zimbra-smtp
+port = 25,465,587
 logpath = /var/log/zimbra.log
 maxretry = 3
-findtime = 3600
-bantime = 36000
-action = iptables-multiport[name=zimbra-submission, port="25,465,587", protocol=tcp]
+findtime = 86400
+bantime = 86400
+action = route
 
-[zimbra-webmail]
+[zimbra-web]
 enabled = true
-filter = zimbra-webmail
+filter = zimbra-web
+port = 80,443,7071,9071
 logpath = /opt/zimbra/log/mailbox.log
-maxretry = 3
-findtime = 3600
-bantime = 36000
-action = iptables-multiport[name=zimbra-webmail, port="80,443", protocol=tcp]
-
-[zimbra-admin]
-enabled = true
-filter = zimbra-admin
-logpath = /opt/zimbra/log/mailbox.log
-maxretry = 3
-findtime = 3600
-bantime = 36000
-action = iptables-multiport[name=zimbra-admin, port="7071", protocol=tcp]
+maxretry = 5
+findtime = 86400
+bantime = 86400
+action = route
